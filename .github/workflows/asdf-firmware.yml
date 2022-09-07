@@ -24,4 +24,4 @@ jobs:
       - run: bash ./make-targets.sh -a -p -i -s
 
       - run: mkdir public
-      - run: sphinx-build -b html firmware/asdf/docs/source public
+      - run: sphinx-build -b html docs/source public
