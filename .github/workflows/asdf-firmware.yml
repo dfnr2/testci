@@ -25,11 +25,6 @@ jobs:
        - run: mkdir public
        - run: sphinx-build -b html docs/source public
 
-       - run: bash ./make-targets.sh -a -p -i -s
-
-       - run: mkdir public
-       - run: sphinx-build -b html docs/source public
-
        - name: Deploy
          uses: JamesIves/github-pages-deploy-action@v4
          with:
