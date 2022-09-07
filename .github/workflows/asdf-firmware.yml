@@ -8,8 +8,8 @@ jobs:
     defaults:
       run:
         shell: sh
-        working-directory: firmware/asdf
-    steps:
+     steps:
+         working-directory: firmware/asdf
        - uses: actions/checkout@v2
        - run: apk add bash git
        - run: apk add gcc-avr binutils-avr avr-libc
@@ -24,7 +24,7 @@ jobs:
        - run: /bin/bash ./make-targets.sh -a -p -i -s
        - run: mkdir public
        - run: sphinx-build -b html docs/source public
-
+    steps:
        - name: Deploy
          uses: JamesIves/github-pages-deploy-action@v4
          with:
