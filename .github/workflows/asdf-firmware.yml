@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get install gcc-avr binutils-avr avr-libc
-      - run: sudo snap install cmake
+      - run: sudo snap install cmake --classic
       - run: pip install -U sphinx sphinx-rtd-theme sphinx-autodoc-typehints
       - run: pip install -U sphinxcontrib-napoleon
       - run: pip install -U toml build
