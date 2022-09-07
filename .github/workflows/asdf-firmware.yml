@@ -11,7 +11,7 @@ jobs:
         working-directory: firmware/asdf
     steps:
        - uses: actions/checkout@v2
-       - run: apk add bash
+       - run: apk add bash git
        - run: apk add gcc-avr binutils-avr avr-libc
        - run: apk add cmake make
        - run: apk add python3 py3-pip
