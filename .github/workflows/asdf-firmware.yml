@@ -1,12 +1,14 @@
 name: asdf-firmware
 on: [push]
+push:[main]
 
 jobs:
   build_firmware:
     runs-on: ubuntu-latest
     steps:
-      - run: apt-get install gcc-avr binutils-avr avr-libc
-      - run: snap install cmake
+      - uses: actions/checkout@latest
+      - run: sudo apt-get install gcc-avr binutils-avr avr-libc
+      - run: sudo snap install cmake
       - run: pip install -U sphinx sphinx-rtd-theme sphinx-autodoc-typehints
       - run: pip install -U sphinxcontrib-napoleon
       - run: pip install -U toml build
