@@ -4,7 +4,7 @@ on: [push]
 jobs:
   build_firmware:
     runs-on: ubuntu-latest
-    container: { image: alpine }
+    container: { image: Python:3.10-alpine }
     defaults:
       run:
         shell: sh
