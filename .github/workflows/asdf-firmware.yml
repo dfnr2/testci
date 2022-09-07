@@ -10,7 +10,7 @@ jobs:
         shell: sh
     steps:
        - name: install_git_and_bash
-         run: apk add bash git
+         run: apk add bash git rsync
 
        - name: checkout
          uses: actions/checkout@v2
