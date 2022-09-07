@@ -4,29 +4,32 @@ on: [push]
 jobs:
   build_firmware:
     runs-on: ubuntu-latest
+    container: { image: alpine }
     defaults:
       run:
-        shell: bash
+        shell: /bin/sh
         working-directory: firmware/asdf
     steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get install gcc-avr binutils-avr avr-libc
-      - run: sudo snap install cmake --classic
-      - run: pip install -U sphinx sphinx-rtd-theme sphinx-autodoc-typehints
-      - run: pip install -U sphinxcontrib-napoleon
-      - run: pip install -U toml build
-      - run: pip install pipenv
+       - uses: actions/checkout@v2
+       - run: apk add bash
+       - run: apk add gcc-avr binutils-avr avr-libc
+       - run: apk add cmake make
+       - run: pip install -U sphinx sphinx-rtd-theme sphinx-autodoc-typehints
+       - run: pip install -U sphinxcontrib-napoleon
+       - run: pip install -U toml
+       - run: pip install pipenv
+       # Create the build directories, make all targets, and copy
+       # hex files to sphinx source directory for download links
+       - run: /bin/bash ./make-targets.sh -a -p -i -s
+       - run: mkdir public
+       - run: sphinx-build -b html docs/source public
 
-      # Create the build directories, make all targets, and copy
-      # hex files to sphinx source directory for download links
-      - run: pwd
-      - run: ls -lR
-      - run: bash ./make-targets.sh -a -p -i -s
+       - run: bash ./make-targets.sh -a -p -i -s
 
-      - run: mkdir public
-      - run: sphinx-build -b html docs/source public
+       - run: mkdir public
+       - run: sphinx-build -b html docs/source public
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: firmware/asdf/public
+       - name: Deploy
+         uses: JamesIves/github-pages-deploy-action@v4
+         with:
+           folder: firmware/asdf/public
