@@ -15,6 +15,8 @@ jobs:
 
       # Create the build directories, make all targets, and copy
       # hex files to sphinx source directory for download links
+      - run: pwd
+      - run: ls -lR
       - run: bash ./make-targets.sh -a -p -i -s
       - run: mkdir public
       - run: sphinx-build -b html docs/source public
