@@ -24,8 +24,8 @@ jobs:
        - run: /bin/bash ./make-targets.sh -a -p -i -s
        - run: mkdir public
        - run: sphinx-build -b html docs/source public
-    steps:
+
        - name: Deploy
-         uses: JamesIves/github-pages-deploy-action@v4
-         with:
-           folder: firmware/asdf/public
+           uses: JamesIves/github-pages-deploy-action@v4
+           with:
+             folder: firmware/asdf/public
