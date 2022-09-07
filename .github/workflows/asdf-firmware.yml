@@ -7,7 +7,7 @@ jobs:
     container: { image: alpine }
     defaults:
       run:
-        shell: /bin/sh
+        shell: sh
         working-directory: firmware/asdf
     steps:
        - uses: actions/checkout@v2
