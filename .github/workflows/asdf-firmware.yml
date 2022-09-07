@@ -4,6 +4,10 @@ on: [push]
 jobs:
   build_firmware:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: firmware/asdf
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt-get install gcc-avr binutils-avr avr-libc
@@ -17,9 +21,7 @@ jobs:
       # hex files to sphinx source directory for download links
       - run: pwd
       - run: ls -lR
-      - run:
-          working-direcotry: firmware/asdf
-          bash ./make-targets.sh -a -p -i -s
+      - run: bash ./make-targets.sh -a -p -i -s
 
       - run: mkdir public
       - run: sphinx-build -b html firmware/asdf/docs/source public
