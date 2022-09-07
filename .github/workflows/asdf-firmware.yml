@@ -1,6 +1,5 @@
 name: asdf-firmware
 on: [push]
-uses: lukka/get-cmake@latest
 
 jobs:
   build_firmware:
