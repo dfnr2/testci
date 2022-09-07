@@ -8,8 +8,7 @@ jobs:
     defaults:
       run:
         shell: sh
-     steps:
-         working-directory: firmware/asdf
+    steps:
        - uses: actions/checkout@v2
        - run: apk add bash git
        - run: apk add gcc-avr binutils-avr avr-libc
@@ -21,11 +20,11 @@ jobs:
        - run: pip install pipenv
        # Create the build directories, make all targets, and copy
        # hex files to sphinx source directory for download links
-       - run: /bin/bash ./make-targets.sh -a -p -i -s
+       - run: cd firmware/asdf; /bin/bash ./make-targets.sh -a -p -i -s
        - run: mkdir public
-       - run: sphinx-build -b html docs/source public
+       - run: sphinx-build -b html firmware/asdf/docs/source public
 
        - name: Deploy
-           uses: JamesIves/github-pages-deploy-action@v4
-           with:
-             folder: firmware/asdf/public
+         uses: JamesIves/github-pages-deploy-action@v4
+         with:
+           folder: public
