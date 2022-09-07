@@ -9,8 +9,12 @@ jobs:
       run:
         shell: sh
     steps:
-       - uses: actions/checkout@v2
-       - run: apk add bash git
+       - name: install_git_and_bash
+         run: apk add bash git
+
+       - name: checkout
+         uses: actions/checkout@v2
+
        - run: apk add gcc-avr binutils-avr avr-libc
        - run: apk add cmake make
        - run: apk add python3 py3-pip
