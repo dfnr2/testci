@@ -25,3 +25,8 @@ jobs:
 
       - run: mkdir public
       - run: sphinx-build -b html docs/source public
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: public
